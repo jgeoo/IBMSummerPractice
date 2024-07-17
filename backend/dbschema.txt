@@ -1,0 +1,39 @@
+Table Student {
+  id integer [primary key]
+  name varchar
+  grade integer
+  study_year integer
+  faculty varchar
+}
+
+Table Course {
+  id  integer [primary key]
+  max_students_allowed integer
+  year_of_study integer
+  category varchar
+  day_of_week varchar
+  start_hour integer
+  end_hour integer
+ }
+Table Enrollement {
+  studentid integer [ref: > Student.id]
+  courseid integer [ref: > Course.id]
+  status boolean
+  created_at Date
+  enrollment_period_id integer [ref: > EnrollmentPeriod.id]
+  }
+Table Teacher {
+   id integer [primary key]
+   name varchar
+   course_id integer [ref: > Course.id]
+}
+Table EnrollmentPeriod {
+  id integer [primary key]
+  start_date date
+  end_date date
+}
+
+// Ref: Student.id <> Course.id // one-to-many
+
+// Ref: Teacher.id < Course.id// one-to-many
+
