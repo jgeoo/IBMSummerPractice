@@ -1,12 +1,11 @@
 package com.example.electivecourses.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,6 +13,11 @@ public class Student {
     private Integer grade;
     private String faculty;
     private Integer study_year;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Enrollment> enrollments;
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;
@@ -54,6 +58,12 @@ public class Student {
     public void setStudy_year(Integer study_year) {
         this.study_year = study_year;
     }
-//@OneToMany(mappedBy = "course")
-    //private Set<Teacher> teachers;
+
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
+    }
 }
