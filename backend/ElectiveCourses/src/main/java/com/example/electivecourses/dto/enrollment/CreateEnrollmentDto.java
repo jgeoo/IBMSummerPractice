@@ -3,7 +3,7 @@ package com.example.electivecourses.dto.enrollment;
 import com.example.electivecourses.entity.Student;
 
 public class CreateEnrollmentDto {
-    private Student student;
+    private Integer studentId;
     private Integer courseId;
     private Boolean status;
     private Integer createdAtYear;
@@ -11,8 +11,8 @@ public class CreateEnrollmentDto {
     private Integer createdAtDay;
 
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public void setCourseId(Integer courseId) {
@@ -35,8 +35,8 @@ public class CreateEnrollmentDto {
         this.createdAtDay = createdAtDay;
     }
 
-    public Student getStudent() {
-        return student;
+    public Integer getStudentId() {
+        return studentId;
     }
 
     public Integer getCourseId() {
