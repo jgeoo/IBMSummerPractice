@@ -2,19 +2,19 @@ package com.example.electivecourses.dto.course;
 
 
 public class CourseDto {
-    private Long id;
+    private Integer id;
+    private String name;
     private Integer maxStudentsAllowed;
     private Integer yearOfStudy;
-    private String category;
     private String dayOfWeek;
     private Integer startHour;
     private Integer endHour;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,12 +34,12 @@ public class CourseDto {
         this.yearOfStudy = yearOfStudy;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDayOfWeek() {

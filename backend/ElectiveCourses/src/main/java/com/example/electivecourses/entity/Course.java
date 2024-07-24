@@ -10,14 +10,16 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
 
     private Integer maxStudentsAllowed;
     private Integer yearOfStudy;
-    private String category;
+
     private String dayOfWeek;
     private Integer startHour;
     private Integer endHour;
-    @OneToMany(mappedBy = "course")
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private Set<Teacher> teachers;
 
     // Getters and Setters
@@ -46,12 +48,12 @@ public class Course {
         this.yearOfStudy = yearOfStudy;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String category) {
+        this.name = category;
     }
 
     public String getDayOfWeek() {

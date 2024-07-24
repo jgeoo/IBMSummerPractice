@@ -3,7 +3,7 @@ package com.example.electivecourses.dto.teacher;
 
 public class EditTeacherDto {
     private String name;
-    private Long courseId; // Assuming courseId for referencing Course
+    private Integer courseId; // Assuming courseId for referencing Course
 
     public String getName() {
         return name;
@@ -13,11 +13,11 @@ public class EditTeacherDto {
         this.name = name;
     }
 
-    public Long getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(Long courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 }

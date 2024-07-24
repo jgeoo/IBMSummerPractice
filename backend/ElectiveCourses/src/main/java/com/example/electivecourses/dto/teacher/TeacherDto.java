@@ -1,15 +1,25 @@
 package com.example.electivecourses.dto.teacher;
 
-public class TeacherDto {
-    private Long id;
-    private String name;
-    private Long courseId; // Assuming courseId for referencing Course
+import com.example.electivecourses.dto.course.CourseDto;
 
-    public Long getId() {
+public class TeacherDto {
+    private Integer id;
+    private String name;
+    private Integer courseId; // Assuming courseId for referencing Course
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -21,11 +31,4 @@ public class TeacherDto {
         this.name = name;
     }
 
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
 }

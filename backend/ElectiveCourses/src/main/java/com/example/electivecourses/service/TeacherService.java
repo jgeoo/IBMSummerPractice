@@ -1,9 +1,12 @@
 package com.example.electivecourses.service;
 
+import com.example.electivecourses.entity.Course;
 import com.example.electivecourses.entity.Teacher;
 import com.example.electivecourses.repository.TeacherRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,19 +19,21 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public Teacher findTeacherById(Long id) {
+    public Teacher findTeacherById(Integer id) {
         return  teacherRepository.findById(id).orElse(null);
     }
 
-    public List<Teacher> findTeachersByCourseId(Integer courseId) {
-        return  teacherRepository.findAllByCourseId(courseId);
-    }
+//    public List<Teacher> findTeachersByCourseId(Integer courseId) {
+//        return  teacherRepository.findAllByCourseId(courseId);
+//    }
 
     public Teacher saveTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
+        Teacher savedTeacher = teacherRepository.save(teacher);
+        Teacher newTeacher = teacherRepository.findById(savedTeacher.getId()).orElse(null);
+        return newTeacher;
     }
 
-    public void deleteTeacher(Long id) {
+    public void deleteTeacher(Integer id) {
         teacherRepository.deleteById(id);
     }
 }

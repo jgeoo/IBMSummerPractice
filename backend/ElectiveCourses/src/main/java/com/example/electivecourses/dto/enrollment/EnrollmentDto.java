@@ -2,68 +2,53 @@ package com.example.electivecourses.dto.enrollment;
 
 import com.example.electivecourses.entity.Student;
 
+import java.time.LocalDateTime;
+
 public class EnrollmentDto {
     private Integer id;
-    private Student student;
+    private Integer studentId;
     private Integer courseId;
-    private Boolean status;
-    private Integer createdAtYear;
-    private Integer createdAtMonth;
-    private Integer createdAtDay;
+    private Integer status;
+    private LocalDateTime createdAt;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    public void setCreatedAtYear(Integer createdAtYear) {
-        this.createdAtYear = createdAtYear;
-    }
-
-    public void setCreatedAtMonth(Integer createdAtMonth) {
-        this.createdAtMonth = createdAtMonth;
-    }
-
-    public void setCreatedAtDay(Integer createdAtDay) {
-        this.createdAtDay = createdAtDay;
-    }
 
     public Integer getId() {
         return id;
     }
 
-    public Student getStudent() {
-        return student;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getCourseId() {
         return courseId;
     }
 
-    public Boolean getStatus() {
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public Integer getStatus() {
         return status;
     }
 
-    public Integer getCreatedAtYear() {
-        return createdAtYear;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Integer getCreatedAtMonth() {
-        return createdAtMonth;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public Integer getCreatedAtDay() {
-        return createdAtDay;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 }

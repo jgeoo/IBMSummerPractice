@@ -28,7 +28,6 @@ public class CourseController {
                 .map(courseMapper::toCourseDto)
                 .collect(Collectors.toList());
     }
-
     @GetMapping("/{id}")
     public CourseDto getCourseById(@PathVariable Integer id) {
         return courseMapper.toCourseDto(courseService.findCourseById(id));

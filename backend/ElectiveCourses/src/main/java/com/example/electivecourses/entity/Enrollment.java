@@ -1,6 +1,9 @@
 package com.example.electivecourses.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Enrollment {
@@ -13,13 +16,14 @@ public class Enrollment {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    private Integer courseId;
-    private Boolean status;
-    private Integer createdAtYear;
-    private Integer createdAtMonth;
-    private Integer createdAtDay;
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
-    // Getters and Setters
+    private Integer status;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     public Integer getId() {
         return id;
@@ -37,43 +41,30 @@ public class Enrollment {
         this.student = student;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Integer getCreatedAtYear() {
-        return createdAtYear;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedAtYear(Integer createdAtYear) {
-        this.createdAtYear = createdAtYear;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Integer getCreatedAtMonth() {
-        return createdAtMonth;
-    }
+    // Getters and Setters
 
-    public void setCreatedAtMonth(Integer createdAtMonth) {
-        this.createdAtMonth = createdAtMonth;
-    }
-
-    public Integer getCreatedAtDay() {
-        return createdAtDay;
-    }
-
-    public void setCreatedAtDay(Integer createdAtDay) {
-        this.createdAtDay = createdAtDay;
-    }
 }
