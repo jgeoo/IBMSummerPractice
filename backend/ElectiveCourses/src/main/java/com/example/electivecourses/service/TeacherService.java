@@ -32,7 +32,6 @@ public class TeacherService {
         Teacher newTeacher = teacherRepository.findById(savedTeacher.getId()).orElse(null);
         return newTeacher;
     }
-
     public void deleteTeacher(Integer id) {
         teacherRepository.deleteById(id);
     }
