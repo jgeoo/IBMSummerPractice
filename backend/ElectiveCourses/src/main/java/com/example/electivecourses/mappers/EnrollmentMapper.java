@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface EnrollmentMapper {
+
     Enrollment toEnrollment(CreateEnrollmentDto createEnrollmentDto);
     EnrollmentDto toEnrollmentDto(Enrollment enrollment);
     Enrollment toEnrollment(EnrollmentDto enrollmentDTO);
