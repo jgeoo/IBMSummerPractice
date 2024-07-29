@@ -1,6 +1,7 @@
 package com.example.electivecourses.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -16,11 +17,14 @@ public class Enrollment {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
+
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
+
+
     private Course course;
 
-    // tip Enum cu statusuri
+
     private Integer status;
 
     @CreationTimestamp
@@ -42,8 +46,10 @@ public class Enrollment {
         this.student = student;
     }
 
-    public Course getCourse() {
-        return course;
+
+
+  public Course getCourse() {
+       return course;
     }
 
     public void setCourse(Course course) {

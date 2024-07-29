@@ -1,4 +1,4 @@
-import {Routes} from "@angular/router";
+import {Routes} from '@angular/router';
 import {StudentFeatureComponent} from "./student-feature.component";
 
 export const studentRoutes: Routes = [
