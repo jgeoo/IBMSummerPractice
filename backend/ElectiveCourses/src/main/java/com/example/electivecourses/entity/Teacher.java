@@ -12,6 +12,7 @@ public class Teacher {
     @Column(nullable = false)
     private String name;
 
+    // de scos
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;

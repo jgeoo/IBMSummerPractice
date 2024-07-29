@@ -20,6 +20,7 @@ public class Enrollment {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
+    // tip Enum cu statusuri
     private Integer status;
 
     @CreationTimestamp

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/courses")
 public class CourseController {
 
@@ -22,8 +23,10 @@ public class CourseController {
     @Autowired
     private CourseMapper courseMapper;
 
+
     @GetMapping
     public List<CourseDto> getAllCourses() {
+        // DE MUTAT MAPARE IN SERVICEURI
         return courseService.findAllCourses().stream()
                 .map(courseMapper::toCourseDto)
                 .collect(Collectors.toList());
@@ -35,6 +38,7 @@ public class CourseController {
 
     @PostMapping
     public CourseDto createCourse(@RequestBody CreateCourseDto createCourseDto) {
+        // DE MUTAT MAPARE IN SERVICEURI
         Course course = courseMapper.toCourse(createCourseDto);
         course = courseService.saveCourse(course);
         return courseMapper.toCourseDto(course);
@@ -45,7 +49,7 @@ public class CourseController {
         Course existingCourse = courseService.findCourseById(id);
         if (existingCourse != null) {
             Course course = courseMapper.toCourse(editCourseDto);
-            course.setId(id);
+            course.setId(id); // ?
             courseService.saveCourse(course);
         }
 
