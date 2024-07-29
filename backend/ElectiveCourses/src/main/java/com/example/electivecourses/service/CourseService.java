@@ -1,11 +1,16 @@
 package com.example.electivecourses.service;
 
+import com.example.electivecourses.dto.course.CourseDto;
+import com.example.electivecourses.dto.course.CreateCourseDto;
+import com.example.electivecourses.dto.course.EditCourseDto;
 import com.example.electivecourses.entity.Course;
+import com.example.electivecourses.mappers.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.electivecourses.repository.CourseRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -13,16 +18,34 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public List<Course> findAllCourses() {
-        return courseRepository.findAll();
+    @Autowired
+    private CourseMapper courseMapper;
+
+
+    public List<CourseDto> findAllCourses() {
+        return courseRepository.findAll().stream()
+                .map(courseMapper::toCourseDto)
+                .collect(Collectors.toList());
     }
 
-    public Course findCourseById(Integer id) {
-        return courseRepository.findById(id).orElse(null);
+    public CourseDto findCourseById(Integer id) {
+        return courseMapper.toCourseDto(courseRepository.findById(id).orElse(null));
     }
 
-    public Course saveCourse(Course course) {
-        return courseRepository.save(course);
+    public CourseDto updateCourse(Integer id, EditCourseDto courseDto) {
+        Course existingCourse = courseRepository.findById(id).orElse(null);
+        if (existingCourse != null) {
+            Course course = courseMapper.toCourse(courseDto);
+            course.setId(id);
+            return courseMapper.toCourseDto(courseRepository.save(course));
+        }
+        else
+            return null;
+    }
+
+    public CourseDto createCourse(CreateCourseDto courseDto) {
+        Course course = courseMapper.toCourse(courseDto);
+        return courseMapper.toCourseDto(courseRepository.save(course));
     }
 
     public void deleteCourse(Integer id) {
