@@ -43,10 +43,15 @@ public class CourseService {
             return null;
     }
 
-    public CourseDto createCourse(CreateCourseDto courseDto) {
-        Course course = courseMapper.toCourse(courseDto);
-        return courseMapper.toCourseDto(courseRepository.save(course));
+    public CourseDto createCourse(CreateCourseDto createCourseDto) {
+        Course course = new Course();
+        course.setName(createCourseDto.getName());
+        Course savedCourse = courseRepository.save(course);
+
+        CourseDto courseDto = courseMapper.toCourseDto(savedCourse);
+        return courseDto;
     }
+
 
     public void deleteCourse(Integer id) {
         courseRepository.deleteById(id);
