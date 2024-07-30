@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="ElectiveCourses" external.linked.project.path="$MODULE_DIR$/../../ElectiveCourses" external.root.project.path="$MODULE_DIR$/../../ElectiveCourses" external.system.id="GRADLE" external.system.module.group="com.example" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_17" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../ElectiveCourses">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/../../ElectiveCourses" dumb="true">
       <excludeFolder url="file://$MODULE_DIR$/../../ElectiveCourses/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../ElectiveCourses/build" />
     </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

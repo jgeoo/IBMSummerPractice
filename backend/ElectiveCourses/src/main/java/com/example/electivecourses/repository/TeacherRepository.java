@@ -14,3 +14,4 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 
 }
 
+

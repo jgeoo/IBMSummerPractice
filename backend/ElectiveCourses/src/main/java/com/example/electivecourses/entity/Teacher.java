@@ -12,11 +12,9 @@ public class Teacher {
     @Column(nullable = false)
     private String name;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
-
 
     // Constructors, getters, and setters
 
@@ -25,7 +23,7 @@ public class Teacher {
 
     public Teacher(String name, Course course) {
         this.name = name;
-        //this.course = course;
+        this.course = course;
     }
 
     public Integer getId() {
@@ -51,8 +49,4 @@ public class Teacher {
     public void setCourse(Course course) {
         this.course = course;
     }
-
-
-
-
 }
