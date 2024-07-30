@@ -1,4 +1,4 @@
-export interface TeacherDto {
+export interface CreateTeacherDto {
   name: string;
   courseId: number;
 }

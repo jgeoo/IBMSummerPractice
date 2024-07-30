@@ -1,6 +1,8 @@
 import {Routes} from "@angular/router";
 import {AdminFeatureComponent} from "./admin-feature.component";
 import {testRoutes} from "../test-feature/test.routes";
+import {teacherRoutes} from "../teacher-feature/teacher-routes";
+
 
 export const adminRoutes: Routes = [
     {
@@ -13,7 +15,7 @@ export const adminRoutes: Routes = [
             },
             {
                 path: 'teachers',
-                children: [...testRoutes]
+                children: [...teacherRoutes]
             }
         ]
     }
