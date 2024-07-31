@@ -21,9 +21,9 @@ public class StudentService {
         return studentMapper.toStudentDto(student);
     }
 
-    public void saveStudent(CreateStudentDto createStudentDto) {
+    public StudentDto saveStudent(CreateStudentDto createStudentDto) {
         Student student = studentMapper.toStudent(createStudentDto);
         student = studentRepository.save(student);
-        studentMapper.toStudentDto(student);
+        return studentMapper.toStudentDto(student);
     }
 }

@@ -44,8 +44,8 @@ public class CourseService {
     }
 
     public CourseDto createCourse(CreateCourseDto createCourseDto) {
-        Course course = new Course();
-        course.setName(createCourseDto.getName());
+        Course course = courseMapper.toCourse(createCourseDto);
+        course.setMaxStudentsAllowed(createCourseDto.getMaxStudentsAllowed());
         Course savedCourse = courseRepository.save(course);
 
         CourseDto courseDto = courseMapper.toCourseDto(savedCourse);

@@ -1,0 +1,41 @@
+<p>edit-course-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input type="text" formControlName="name" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Max Students Allowed</mat-label>
+    <input type="number" formControlName="maxStudentsAllowed" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Year of study</mat-label>
+    <input type="number" formControlName="yearOfStudy" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select</mat-label>
+    <mat-select formControlName="dayOfWeek">
+      <mat-option value="monday">Monday</mat-option>
+      <mat-option value="tuesday">Tuesday</mat-option>
+      <mat-option value="wednesday">Wednesday</mat-option>
+      <mat-option value="thursday">Thrusday</mat-option>
+      <mat-option value="friday">Friday</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Start Hour</mat-label>
+    <input type="number" formControlName="startHour" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>End Hour</mat-label>
+    <input type="number" formControlName="endHour" matInput>
+  </mat-form-field>
+
+  <button type="button" routerLink="/admin/courses" mat-button>Cancel</button>
+  <button type="submit" mat-flat-button>Edit</button>
+</form>

@@ -1,0 +1,27 @@
+<p>create-student-page works!</p>
+<p>add-course-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input type="text" formControlName="name" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Study Year</mat-label>
+    <input type="number" formControlName="study_year" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <input type="text" formControlName="faculty" matInput>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-label>Grade</mat-label>
+    <input type="number" formControlName="grade" matInput>
+  </mat-form-field>
+
+
+  <button type="submit" mat-flat-button>Create</button>
+</form>
