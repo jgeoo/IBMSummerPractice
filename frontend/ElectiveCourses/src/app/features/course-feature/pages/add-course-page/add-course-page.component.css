@@ -1,9 +1,26 @@
 button {
-  margin-left: 20px;
+  margin-left: 75px;
   shape-margin: 15px;
   font-size: medium;
 }
-
+.custom-button {
+  background-color: red;
+  color: white;
+  shape-margin: 20px;
+}
+mat-button {
+  shape-margin: 15px;
+  font-size: medium;
+}
+mat-flat-button {
+  shape-margin: 15px;
+  font-size: medium;
+}
+mat-form-field {
+  margin-left: 20px;
+  shape-margin: 20px;
+  font-size: medium;
+}
 p {
   margin-left: 50px;
 }
