@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {CourseDto} from "../../dto/course/CourseDto";
 import {CreateCourseDto} from "../../dto/course/CreateCourseDto";
 import {EditCourseDto} from "../../dto/course/EditCourseDto";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,10 @@ export class CourseService {
     }
     getById(id: number) {
       return this.http.get<CourseDto>(this.path + `/${id}`);
+    }
+    getAllCourseIds(): Observable<number[]> {
+      return this.http.get<CourseDto[]>(this.path).pipe(
+        map(courses => courses.map(course => course.id))
+      );
     }
 }
