@@ -4,7 +4,9 @@ import com.example.electivecourses.dto.course.CourseDto;
 import com.example.electivecourses.dto.course.CreateCourseDto;
 import com.example.electivecourses.dto.course.EditCourseDto;
 import com.example.electivecourses.entity.Course;
+import com.example.electivecourses.entity.Teacher;
 import com.example.electivecourses.mappers.CourseMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.electivecourses.repository.CourseRepository;
@@ -21,7 +23,8 @@ public class CourseService {
     @Autowired
     private CourseMapper courseMapper;
 
-
+    @Autowired
+    private TeacherService teacherService;
     public List<CourseDto> findAllCourses() {
         return courseRepository.findAll().stream()
                 .map(courseMapper::toCourseDto)
@@ -53,7 +56,12 @@ public class CourseService {
     }
 
 
+    @Transactional
     public void deleteCourse(Integer id) {
+        List<Teacher> teachers = teacherService.findTeachersByCourseId(id);
+        for (Teacher teacher : teachers) {
+            teacherService.deleteTeacher(teacher.getId());
+        }
         courseRepository.deleteById(id);
     }
 }

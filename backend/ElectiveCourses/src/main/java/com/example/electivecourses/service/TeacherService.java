@@ -23,9 +23,9 @@ public class TeacherService {
         return  teacherRepository.findById(id).orElse(null);
     }
 
-//    public List<Teacher> findTeachersByCourseId(Integer courseId) {
-//        return  teacherRepository.findAllByCourseId(courseId);
-//    }
+    public List<Teacher> findTeachersByCourseId(Integer courseId) {
+        return  teacherRepository.findAllByCourseId(courseId);
+    }
 
     public Teacher saveTeacher(Teacher teacher) {
         Teacher savedTeacher = teacherRepository.save(teacher);
