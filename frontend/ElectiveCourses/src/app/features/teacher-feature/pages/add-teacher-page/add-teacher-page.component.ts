@@ -8,6 +8,7 @@ import {Router, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatSelectModule} from "@angular/material/select";
 import {CourseService} from "../../../../core/services/http/course.service";
+import {CourseDto} from "../../../../core/dto/course/CourseDto";
 
 @Component({
   selector: 'app-add-teacher-page',
@@ -32,7 +33,7 @@ import {CourseService} from "../../../../core/services/http/course.service";
 })
 export class AddTeacherPageComponent {
 
-  courseIds: number[] =[];
+  courses: CourseDto[] =[];
 
   private readonly teacherService = inject(TeacherService);
   private readonly router = inject(Router);
@@ -41,13 +42,13 @@ export class AddTeacherPageComponent {
 
 
   ngOnInit() {
-    this.courseService.getAllCourseIds().subscribe({
+    this.courseService.getAllCourses().subscribe({
       next: (data) => {
-        this.courseIds = data;
-        console.log('Fetched Course IDs:', this.courseIds);
+        this.courses = data.sort((c1, c2) => c1.name.localeCompare((c2.name)));
+        console.log('Fetched Courses: ', this.courses);
       },
       error: (err) => {
-        console.error('Error fetching course IDs', err);
+        console.error('Error fetching courses', err);
       }
     });
   }
