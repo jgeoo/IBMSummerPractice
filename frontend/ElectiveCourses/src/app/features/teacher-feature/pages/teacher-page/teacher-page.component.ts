@@ -4,7 +4,9 @@ import { TeacherDto } from "../../../../core/dto/teacher/TeacherDto";
 import { MatButton } from "@angular/material/button";
 import { RouterLink } from "@angular/router";
 import { MatTableModule } from '@angular/material/table';
-import {JsonPipe, NgIf} from "@angular/common";
+import { JsonPipe, NgIf } from "@angular/common";
+import { CourseDto } from "../../../../core/dto/course/CourseDto";
+import { CourseService } from "../../../../core/services/http/course.service";
 
 @Component({
   selector: 'app-teacher-page',
@@ -21,22 +23,48 @@ import {JsonPipe, NgIf} from "@angular/common";
 })
 export class TeacherPageComponent implements OnInit {
   private readonly teacherService = inject(TeacherService);
+  private readonly courseService: CourseService = inject(CourseService);
   teachers: TeacherDto[] = [];
-  displayedColumns: string[] = ['id', 'name', 'courseId'];
+  courses: CourseDto[] = [];
+
+  displayedColumns: string[] = ['id', 'name', 'courseName'];
+  loadingTeachers = true;
+  loadingCourses = true;
   loading = true;
   error: string | null = null;
 
   ngOnInit() {
+    this.courseService.getAllCourses().subscribe({
+      next: (value) => {
+        this.courses = value;
+        this.loadingCourses = false;
+        this.loading = this.loadingTeachers;
+      },
+      error: (err) => {
+        console.error('Error fetching courses', err);
+        this.error = 'Error fetching courses data';
+        this.loadingCourses = false;
+        this.loading = this.loadingTeachers;
+      }
+    });
+
     this.teacherService.getTeachers().subscribe({
       next: (value) => {
         this.teachers = value;
-        this.loading = false;
+        this.loadingTeachers = false;
+        this.loading = this.loadingCourses;
       },
       error: (err) => {
         console.error('Error fetching teachers', err);
         this.error = 'Error fetching teacher data';
-        this.loading = false;
+        this.loadingTeachers = false;
+        this.loading = this.loadingCourses;
       }
     });
+  }
+
+  getCourseName(courseId: number): string {
+    const course = this.courses.find(course => course.id === courseId);
+    return course ? course.name : 'Unknown';
   }
 }
