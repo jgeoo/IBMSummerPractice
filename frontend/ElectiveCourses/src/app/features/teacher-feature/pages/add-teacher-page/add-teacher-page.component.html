@@ -20,13 +20,13 @@
 
   <!-- Course ID Dropdown -->
   <mat-form-field >
-    <mat-label>Course ID</mat-label>
+    <mat-label>Course</mat-label>
     <mat-select formControlName="courseId">
-      <mat-option *ngFor="let courseId of courseIds" [value]="courseId">
-        {{ courseId }}
+      <mat-option *ngFor="let course of courses" [value]="course.id">
+        {{ course.name }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="form.get('courseId')?.hasError('required')">Course ID is required</mat-error>
+    <mat-error *ngIf="form.get('courseId')?.hasError('required')">Course is required</mat-error>
   </mat-form-field>
 
   <!-- Submit Button -->
