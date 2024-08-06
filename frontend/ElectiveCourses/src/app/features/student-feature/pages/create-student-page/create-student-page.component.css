@@ -1,0 +1,13 @@
+button {
+  margin-left: 25px;
+  shape-margin: 15px;
+  font-size: medium;
+}
+mat-form-field {
+  margin-left: 20px;
+  shape-margin: 20px;
+  font-size: medium;
+}
+p {
+  margin-left: 50px;
+}
