@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {SelectFeatureComponent} from "./core/components/select-feature/select-feature.component";
 
 export const routes: Routes = [
     {

@@ -18,7 +18,21 @@ import {CourseService} from "../../../../core/services/http/course.service";
 import {CourseDto} from "../../../../core/dto/course/CourseDto";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {StudentStateService} from "../../services/student-state.service";
-import {AsyncPipe, JsonPipe} from "@angular/common";
+import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
+import {EnrollmentService} from "../../../../core/services/http/enrollment.service";
+import {MatDialog} from "@angular/material/dialog";
+import {EnrollDialogComponent} from "../../components/enroll-dialog/enroll-dialog.component";
+
+export interface TableData {
+  dto: CourseDto,
+  enrolled: boolean,
+  enrollmentId: number
+}
+
+export interface DialogData {
+  course: CourseDto,
+  studentId: number
+}
 
 @Component({
   selector: 'app-electives-page',
@@ -42,27 +56,36 @@ import {AsyncPipe, JsonPipe} from "@angular/common";
     RouterLink,
     MatHeaderCellDef,
     AsyncPipe,
-    JsonPipe
+    JsonPipe,
+    NgIf
   ],
   templateUrl: './electives-page.component.html',
   styleUrl: './electives-page.component.css'
 })
 export class ElectivesPageComponent implements OnInit, AfterViewInit{
   private readonly courseService = inject(CourseService);
+  private readonly enrollmentService = inject(EnrollmentService);
   private readonly destroyRef  = inject(DestroyRef)
-   student$ = inject(StudentStateService).getAsObservable();
+  readonly dialog = inject(MatDialog);
+
+  student$ = inject(StudentStateService).getAsObservable();
   courses : CourseDto[] = []
-  dataSource = new MatTableDataSource<CourseDto>();
+  dataSource = new MatTableDataSource<TableData>();
   displayedColumns: string[] = ['name', 'dayOfWeek', 'yearOfStudy', 'maxStudents', 'hours', 'actions'] ;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   ngOnInit() {
     this.courseService.getAllCourses().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: value => {
         this.courses = value
-        this.dataSource.data = this.courses;
+        this.dataSource.data = this.courses.map(c => ({
+        dto: c,
+        enrolled: false,
+          enrollmentId: 0
+        }));
       }
     })
   }
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -72,4 +95,36 @@ export class ElectivesPageComponent implements OnInit, AfterViewInit{
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  enroll(element: CourseDto, studentId: number) {
+    const dialogRef = this.dialog.open(EnrollDialogComponent, {
+      data: {course: element, studentId: studentId},
+    });
+
+    dialogRef.afterClosed().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(result => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+        this.dataSource.data.forEach(c => {
+          if(c.dto.id == element.id) {
+            c.enrolled = true;
+            c.enrollmentId = result.id;
+          }
+        })
+      }
+    });
+
+  }
+
+  leave(element: CourseDto, enrollmentId: number) {
+    this.enrollmentService.deleteEnrollment(enrollmentId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: val => {
+        this.dataSource.data.forEach(c => {
+          if(c.dto.id == element.id) {
+            c.enrolled = false;
+          }
+        })
+      }
+    })
+  }
+
 }

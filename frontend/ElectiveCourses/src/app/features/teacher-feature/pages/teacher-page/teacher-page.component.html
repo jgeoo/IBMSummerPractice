@@ -1,32 +1,39 @@
-<p>teacher-page works!</p>
-<button mat-flat-button routerLink="./add">Add Teacher</button>
+<div class="max-w-3xl m-auto">
 
-<!-- Loading and error states -->
-<div *ngIf="loading">Loading teachers...</div>
-<div *ngIf="error">{{ error }}</div>
+  <button mat-flat-button routerLink="./add">Add Teacher</button>
 
-<!-- Display teacher list in a table -->
-<table *ngIf="!loading && !error" mat-table [dataSource]="teachers">
+  <!-- Loading and error states -->
+  <div *ngIf="loading">Loading teachers...</div>
+  <div *ngIf="error">{{ error }}</div>
 
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let teacher"> {{ teacher.id }} </td>
-  </ng-container>
+  <!-- Display teacher list in a table -->
+  <div class="mat-elevation-z8">
+    <table *ngIf="!loading && !error" mat-table [dataSource]="teachers">
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let teacher"> {{ teacher.name }} </td>
-  </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let teacher"> {{ teacher.id }} </td>
+      </ng-container>
 
-  <!-- Course ID Column -->
-  <ng-container matColumnDef="courseId">
-    <th mat-header-cell *matHeaderCellDef> Course ID </th>
-    <td mat-cell *matCellDef="let teacher"> {{ teacher.courseId }} </td>
-  </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let teacher"> {{ teacher.name }} </td>
+      </ng-container>
 
-  <!-- Header and Rows -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <!-- Course ID Column -->
+      <ng-container matColumnDef="courseId">
+        <th mat-header-cell *matHeaderCellDef> Course ID </th>
+        <td mat-cell *matCellDef="let teacher"> {{ teacher.courseId }} </td>
+      </ng-container>
+
+      <!-- Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
+</div>
+

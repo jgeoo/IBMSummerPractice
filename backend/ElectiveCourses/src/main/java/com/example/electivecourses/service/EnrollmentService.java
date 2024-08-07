@@ -2,6 +2,7 @@ package com.example.electivecourses.service;
 
 import com.example.electivecourses.dto.enrollment.CreateEnrollmentDto;
 import com.example.electivecourses.dto.enrollment.EnrollmentDto;
+import com.example.electivecourses.dto.enrollment.EnrollmentDto2;
 import com.example.electivecourses.entity.Course;
 import com.example.electivecourses.entity.Enrollment;
 import com.example.electivecourses.entity.Student;
@@ -22,12 +23,25 @@ public class EnrollmentService {
     @Autowired
     private EnrollmentMapper enrollmentMapper;
 
-    public List<EnrollmentDto> findAllEnrollments() {
+//    public List<EnrollmentDto> findAllEnrollments() {
+//        return enrollmentRepository.findAll().stream()
+//                .map(enrollment -> {
+//                    EnrollmentDto enrollmentDto = enrollmentMapper.toEnrollmentDto(enrollment);
+//                    enrollmentDto.setCourseId(enrollment.getCourse().getId());
+//                    enrollmentDto.setStudentId(enrollment.getStudent().getId());
+//                    return enrollmentDto;
+//                })
+//                .collect(Collectors.toList());
+//    }
+
+        public List<EnrollmentDto2> findAllEnrollments() {
         return enrollmentRepository.findAll().stream()
                 .map(enrollment -> {
-                    EnrollmentDto enrollmentDto = enrollmentMapper.toEnrollmentDto(enrollment);
-                    enrollmentDto.setCourseId(enrollment.getCourse().getId());
-                    enrollmentDto.setStudentId(enrollment.getStudent().getId());
+                    EnrollmentDto2 enrollmentDto = new EnrollmentDto2();
+                    enrollmentDto.setCourseName(enrollment.getCourse().getName());
+                    enrollmentDto.setStudentName(enrollment.getStudent().getName());
+                    enrollmentDto.setCourseMaxStudents(enrollment.getCourse().getMaxStudentsAllowed());
+                    enrollmentDto.setStudentGrade(enrollment.getStudent().getGrade());
                     return enrollmentDto;
                 })
                 .collect(Collectors.toList());

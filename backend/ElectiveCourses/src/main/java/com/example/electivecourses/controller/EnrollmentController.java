@@ -2,6 +2,7 @@ package com.example.electivecourses.controller;
 
 import com.example.electivecourses.dto.enrollment.CreateEnrollmentDto;
 import com.example.electivecourses.dto.enrollment.EnrollmentDto;
+import com.example.electivecourses.dto.enrollment.EnrollmentDto2;
 import com.example.electivecourses.service.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class EnrollmentController {
     private EnrollmentService enrollmentService;
 
     @GetMapping
-    public List<EnrollmentDto> getAllEnrollments() {
+    public List<EnrollmentDto2> getAllEnrollments() {
         return enrollmentService.findAllEnrollments();
     }
 

@@ -42,6 +42,8 @@ public class CourseController {
 
     @DeleteMapping("/{id}")
     public void deleteCourse(@PathVariable Integer id) {
+        // findAll teachers care au courseId == id
+        // delete la fiecare
         courseService.deleteCourse(id);
     }
 }
