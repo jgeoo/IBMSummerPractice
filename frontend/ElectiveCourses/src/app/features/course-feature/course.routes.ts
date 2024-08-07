@@ -5,22 +5,22 @@ import {AddCoursePageComponent} from "./pages/add-course-page/add-course-page.co
 import {EditCoursePageComponent} from "./pages/edit-course-page/edit-course-page.component";
 
 export const courseRoutes: Routes = [
-    {
+  {
+    path: '',
+    component: CourseFeatureComponent,
+    children: [
+      {
         path: '',
-        component: CourseFeatureComponent,
-        children: [
-            {
-                path: '',
-                component: CoursesPageComponent
-            },
-            {
-                path: 'add',
-                component: AddCoursePageComponent
-            },
-          {
-            path: 'edit/:id',
-            component: EditCoursePageComponent
-          }
-        ]
-    }
+        component: CoursesPageComponent
+      },
+      {
+        path: 'add',
+        component: AddCoursePageComponent
+      },
+      {
+        path: 'edit/:id',
+        component: EditCoursePageComponent
+      }
+    ]
+  }
 ]

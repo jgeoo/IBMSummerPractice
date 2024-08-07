@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { TeacherService } from "../../../../core/services/http/teacher.service";
-import { TeacherDto } from "../../../../core/dto/teacher/TeacherDto";
-import { MatButton } from "@angular/material/button";
-import { RouterLink } from "@angular/router";
-import { MatTableModule } from '@angular/material/table';
+import {Component, inject, OnInit} from '@angular/core';
+import {TeacherService} from "../../../../core/services/http/teacher.service";
+import {TeacherDto} from "../../../../core/dto/teacher/TeacherDto";
+import {MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
+import {MatTableModule} from '@angular/material/table';
 import {JsonPipe, NgIf} from "@angular/common";
 
 @Component({
@@ -20,11 +20,11 @@ import {JsonPipe, NgIf} from "@angular/common";
   styleUrls: ['./teacher-page.component.css']
 })
 export class TeacherPageComponent implements OnInit {
-  private readonly teacherService = inject(TeacherService);
   teachers: TeacherDto[] = [];
   displayedColumns: string[] = ['id', 'name', 'courseId'];
   loading = true;
   error: string | null = null;
+  private readonly teacherService = inject(TeacherService);
 
   ngOnInit() {
     this.teacherService.getTeachers().subscribe({

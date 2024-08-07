@@ -24,10 +24,10 @@ import {MatButton} from "@angular/material/button";
   styleUrl: './enroll-dialog.component.css'
 })
 export class EnrollDialogComponent {
-  private readonly enrollmentService = inject(EnrollmentService);
-  private readonly destroyRef  = inject(DestroyRef)
   readonly dialogRef = inject(MatDialogRef<EnrollDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  private readonly enrollmentService = inject(EnrollmentService);
+  private readonly destroyRef = inject(DestroyRef)
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -39,7 +39,7 @@ export class EnrollDialogComponent {
       status: 0,
       studentId: this.data.studentId
     }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next:(val) => {
+      next: (val) => {
         this.dialogRef.close(val);
       }
     })

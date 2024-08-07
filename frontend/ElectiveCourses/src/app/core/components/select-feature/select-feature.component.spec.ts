@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SelectFeatureComponent } from './select-feature.component';
+import {SelectFeatureComponent} from './select-feature.component';
 
 describe('SelectFeatureComponent', () => {
   let component: SelectFeatureComponent;
@@ -10,7 +10,7 @@ describe('SelectFeatureComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SelectFeatureComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SelectFeatureComponent);
     component = fixture.componentInstance;

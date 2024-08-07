@@ -1,7 +1,6 @@
 // @ts-nocheck
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {EnrollmentService} from "../../core/services/http/enrollment.service";
-import {EnrollmentDto} from "../../core/dto/enrollment/enrollment.dto";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
 import {EnrollmentDetailDto} from "../../core/dto/enrollment/enrollment-detail.dto";
@@ -9,11 +8,15 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
   MatTableDataSource
 } from "@angular/material/table";
-import {TableData} from "../student-feature/pages/electives-page/electives-page.component";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -50,12 +53,12 @@ import autoTable from "jspdf-autotable";
   templateUrl: './enrollment-feature.component.html',
   styleUrl: './enrollment-feature.component.css'
 })
-export class EnrollmentFeatureComponent implements OnInit{
-  private readonly enrollmentService = inject(EnrollmentService);
-  private readonly destroyRef = inject(DestroyRef);
+export class EnrollmentFeatureComponent implements OnInit {
   enrollments: EnrollmentDetailDto[] = []
   dataSource = new MatTableDataSource<EnrollmentDetailDto>();
-  displayedColumns: string[] = ['studentName', 'studentGrade', 'courseName', 'courseMaxStudents'] ;
+  displayedColumns: string[] = ['studentName', 'studentGrade', 'courseName', 'courseMaxStudents'];
+  private readonly enrollmentService = inject(EnrollmentService);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.enrollmentService.getEnrollments().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
@@ -91,7 +94,7 @@ export class EnrollmentFeatureComponent implements OnInit{
     transformedEnrollments.sort((a, b) => a[0].localeCompare(b[0]));
 
     const doc = new jsPDF()
-    autoTable(doc, { html: '#my-table' })
+    autoTable(doc, {html: '#my-table'})
     autoTable(doc, {
       head: [['Name', 'Grade', 'Course', 'Status']],
       body: transformedEnrollments

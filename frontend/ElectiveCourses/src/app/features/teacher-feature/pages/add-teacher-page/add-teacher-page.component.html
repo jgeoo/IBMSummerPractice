@@ -2,24 +2,24 @@
 <button mat-flat-button routerLink="./add">Add Teacher</button>
 
 <!-- Form for adding teacher -->
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="form">
 
   <!-- ID Field -->
   <mat-form-field appearance="fill">
     <mat-label>ID</mat-label>
-    <input matInput formControlName="id" type="number">
+    <input formControlName="id" matInput type="number">
     <mat-error *ngIf="form.get('id')?.hasError('required')">ID is required</mat-error>
   </mat-form-field>
 
   <!-- Name Field -->
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
+    <input formControlName="name" matInput>
     <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
   </mat-form-field>
 
   <!-- Course ID Dropdown -->
-  <mat-form-field >
+  <mat-form-field>
     <mat-label>Course</mat-label>
     <mat-select formControlName="courseId">
       <mat-option *ngFor="let course of courses" [value]="course.id">
@@ -30,6 +30,6 @@
   </mat-form-field>
 
   <!-- Submit Button -->
-  <button mat-raised-button type="submit" [disabled]="form.invalid">Submit</button>
+  <button [disabled]="form.invalid" mat-raised-button type="submit">Submit</button>
 
 </form>

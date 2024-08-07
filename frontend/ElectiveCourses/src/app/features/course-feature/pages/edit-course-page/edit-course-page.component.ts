@@ -12,26 +12,21 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 @Component({
   selector: 'app-edit-course-page',
   standalone: true,
-    imports: [
-        FormsModule,
-        MatButton,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        MatOption,
-        MatSelect,
-        ReactiveFormsModule,
-        RouterLink
-    ],
+  imports: [
+    FormsModule,
+    MatButton,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatOption,
+    MatSelect,
+    ReactiveFormsModule,
+    RouterLink
+  ],
   templateUrl: './edit-course-page.component.html',
   styleUrl: './edit-course-page.component.css'
 })
-export class EditCoursePageComponent implements OnInit{
-  private readonly courseService = inject(CourseService);
-  private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
-  private readonly destroyRef = inject(DestroyRef);
-
+export class EditCoursePageComponent implements OnInit {
   form = new FormGroup({
     name: new FormControl("", {
       validators: [Validators.required],
@@ -55,6 +50,11 @@ export class EditCoursePageComponent implements OnInit{
     }),
 
   })
+  daysOfWeek = [""]
+  private readonly courseService = inject(CourseService);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.courseService.getById(this.route.snapshot.params['id']).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
@@ -64,7 +64,6 @@ export class EditCoursePageComponent implements OnInit{
     })
   }
 
-  daysOfWeek = [""]
   submit() {
     this.courseService.editCourse(this.route.snapshot.params['id'], this.form.getRawValue()).subscribe({
       next: value => {

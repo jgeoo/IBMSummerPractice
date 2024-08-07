@@ -1,27 +1,26 @@
-
-<form class="m-auto" [formGroup]="form" (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="form" class="m-auto">
   <p class="text-xl">Student Registration</p>
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input type="text" formControlName="name" matInput>
+    <input formControlName="name" matInput type="text">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Study Year</mat-label>
-    <input type="number" formControlName="study_year" matInput>
+    <input formControlName="study_year" matInput type="number">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Faculty</mat-label>
-    <input type="text" formControlName="faculty" matInput>
+    <input formControlName="faculty" matInput type="text">
   </mat-form-field>
 
 
   <mat-form-field>
     <mat-label>Grade</mat-label>
-    <input type="number" formControlName="grade" matInput>
+    <input formControlName="grade" matInput type="number">
   </mat-form-field>
 
 
-  <button type="submit" mat-flat-button>Register</button>
+  <button mat-flat-button type="submit">Register</button>
 </form>

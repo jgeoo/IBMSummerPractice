@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EnrollDialogComponent } from './enroll-dialog.component';
+import {EnrollDialogComponent} from './enroll-dialog.component';
 
 describe('EnrollDialogComponent', () => {
   let component: EnrollDialogComponent;
@@ -10,7 +10,7 @@ describe('EnrollDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EnrollDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EnrollDialogComponent);
     component = fixture.componentInstance;

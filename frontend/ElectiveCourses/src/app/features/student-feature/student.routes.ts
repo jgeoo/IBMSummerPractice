@@ -4,18 +4,18 @@ import {ElectivesPageComponent} from "./pages/electives-page/electives-page.comp
 import {CreateStudentPageComponent} from "./pages/create-student-page/create-student-page.component";
 
 export const studentRoutes: Routes = [
-    {
+  {
+    path: '',
+    component: StudentFeatureComponent,
+    children: [
+      {
         path: '',
-        component: StudentFeatureComponent,
-        children: [
-          {
-            path: '',
-            component: CreateStudentPageComponent
-          },
-          {
-            path: 'electives',
-            component: ElectivesPageComponent
-          }
-        ]
-    }
+        component: CreateStudentPageComponent
+      },
+      {
+        path: 'electives',
+        component: ElectivesPageComponent
+      }
+    ]
+  }
 ]

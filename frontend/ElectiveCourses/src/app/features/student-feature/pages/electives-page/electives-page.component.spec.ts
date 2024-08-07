@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ElectivesPageComponent } from './electives-page.component';
+import {ElectivesPageComponent} from './electives-page.component';
 
 describe('ElectivesPageComponent', () => {
   let component: ElectivesPageComponent;
@@ -10,7 +10,7 @@ describe('ElectivesPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ElectivesPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ElectivesPageComponent);
     component = fixture.componentInstance;

@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Enroll to {{data.course.name}}</h2>
+<h2 mat-dialog-title>Enroll to {{ data.course.name }}</h2>
 <mat-dialog-content>
-  <div>Timeslot: {{data.course.dayOfWeek}}: {{data.course.startHour}} - {{data.course.endHour}}</div>
+  <div>Timeslot: {{ data.course.dayOfWeek }}: {{ data.course.startHour }} - {{ data.course.endHour }}</div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="enroll()" cdkFocusInitial>Ok</button>
+  <button (click)="onNoClick()" mat-button>No Thanks</button>
+  <button (click)="enroll()" cdkFocusInitial mat-button>Ok</button>
 </mat-dialog-actions>

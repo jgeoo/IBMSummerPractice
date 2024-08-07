@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {StudentDto} from "../../../core/dto/student/StudentDto";
 
@@ -7,8 +7,11 @@ import {StudentDto} from "../../../core/dto/student/StudentDto";
 })
 export class StudentStateService {
 
-  constructor() { }
   subject = new BehaviorSubject<StudentDto | null>(null)
+
+  constructor() {
+  }
+
   getAsObservable() {
     return this.subject.asObservable();
   }

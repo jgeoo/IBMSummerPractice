@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {CourseDto} from "../../../../core/dto/course/CourseDto";
 import {CourseService} from "../../../../core/services/http/course.service";
 import {JsonPipe} from "@angular/common";
@@ -9,10 +8,14 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef,
-  MatRow, MatRowDef,
-  MatTable, MatTableDataSource
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource
 } from "@angular/material/table";
 import {MatIcon} from "@angular/material/icon";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
@@ -48,20 +51,21 @@ import {MatInput} from "@angular/material/input";
   styleUrl: './courses-page.component.css'
 })
 export class CoursesPageComponent implements OnInit, AfterViewInit {
-    private readonly courseService = inject(CourseService);
-    private readonly destroyRef  = inject(DestroyRef)
-    courses : CourseDto[] = []
-    dataSource = new MatTableDataSource<CourseDto>();
-    displayedColumns: string[] = ['name', 'dayOfWeek', 'yearOfStudy', 'maxStudents', 'actions'];
-    ngOnInit() {
-        this.courseService.getAllCourses().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-            next: value => {
-                this.courses = value
-                this.dataSource.data = this.courses;
-            }
-        })
-    }
+  courses: CourseDto[] = []
+  dataSource = new MatTableDataSource<CourseDto>();
+  displayedColumns: string[] = ['name', 'dayOfWeek', 'yearOfStudy', 'maxStudents', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  private readonly courseService = inject(CourseService);
+  private readonly destroyRef = inject(DestroyRef)
+
+  ngOnInit() {
+    this.courseService.getAllCourses().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: value => {
+        this.courses = value
+        this.dataSource.data = this.courses;
+      }
+    })
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -71,18 +75,19 @@ export class CoursesPageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-    onDelete(id: number) {
-      this.courseService.deleteCourse(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-        next: value => {
-          this.courses = this.courses.filter(c => {
-            if(c.id == id) {
-              return false
-            } else {
-              return true;
-            }
-          })
-          this.dataSource.data = this.courses;
-        }
-      })
-    }
+
+  onDelete(id: number) {
+    this.courseService.deleteCourse(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: value => {
+        this.courses = this.courses.filter(c => {
+          if (c.id == id) {
+            return false
+          } else {
+            return true;
+          }
+        })
+        this.dataSource.data = this.courses;
+      }
+    })
+  }
 }

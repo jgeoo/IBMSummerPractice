@@ -8,11 +8,11 @@ export const teacherRoutes: Routes = [
   {
     path: '',
     component: TeacherFeatureComponent,
-    children:[{
+    children: [{
 
       path: '',
       component: TeacherPageComponent
-      },
+    },
       {
 
         path: 'add',

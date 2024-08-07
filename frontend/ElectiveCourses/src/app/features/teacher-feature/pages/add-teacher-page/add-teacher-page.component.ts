@@ -33,26 +33,7 @@ import {CourseDto} from "../../../../core/dto/course/CourseDto";
 })
 export class AddTeacherPageComponent {
 
-  courses: CourseDto[] =[];
-
-  private readonly teacherService = inject(TeacherService);
-  private readonly router = inject(Router);
-
-  constructor(private courseService: CourseService) {}
-
-
-  ngOnInit() {
-    this.courseService.getAllCourses().subscribe({
-      next: (data) => {
-        this.courses = data.sort((c1, c2) => c1.name.localeCompare((c2.name)));
-        console.log('Fetched Courses: ', this.courses);
-      },
-      error: (err) => {
-        console.error('Error fetching courses', err);
-      }
-    });
-  }
-
+  courses: CourseDto[] = [];
   form = new FormGroup({
     id: new FormControl(0, {
       validators: [Validators.required],
@@ -67,8 +48,23 @@ export class AddTeacherPageComponent {
       nonNullable: true
     }),
   });
+  private readonly teacherService = inject(TeacherService);
+  private readonly router = inject(Router);
 
+  constructor(private courseService: CourseService) {
+  }
 
+  ngOnInit() {
+    this.courseService.getAllCourses().subscribe({
+      next: (data) => {
+        this.courses = data.sort((c1, c2) => c1.name.localeCompare((c2.name)));
+        console.log('Fetched Courses: ', this.courses);
+      },
+      error: (err) => {
+        console.error('Error fetching courses', err);
+      }
+    });
+  }
 
   submit() {
     if (this.form.valid) {

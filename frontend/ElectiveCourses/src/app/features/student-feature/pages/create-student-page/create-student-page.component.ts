@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {CourseService} from "../../../../core/services/http/course.service";
 import {Router, RouterLink} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {StudentService} from "../../../../core/services/http/student.service";
@@ -27,10 +26,6 @@ import {StudentStateService} from "../../services/student-state.service";
   styleUrl: './create-student-page.component.css'
 })
 export class CreateStudentPageComponent {
-  private readonly studentService = inject(StudentService);
-  private readonly studentStateService = inject(StudentStateService);
-  private readonly router = inject(Router);
-
   form = new FormGroup({
     name: new FormControl("", {
       validators: [Validators.required],
@@ -48,8 +43,11 @@ export class CreateStudentPageComponent {
     })
 
   })
-
   daysOfWeek = [""]
+  private readonly studentService = inject(StudentService);
+  private readonly studentStateService = inject(StudentStateService);
+  private readonly router = inject(Router);
+
   submit() {
     this.studentService.createStudent(this.form.getRawValue()).subscribe({
       next: value => {

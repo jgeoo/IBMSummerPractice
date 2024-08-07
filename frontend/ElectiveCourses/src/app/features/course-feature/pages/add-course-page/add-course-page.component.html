@@ -1,43 +1,42 @@
-
 <div class="text-2xl text-center mt-5 mb-5">Add Course</div>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="form">
 
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input type="text" formControlName="name" matInput>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput type="text">
+  </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Max Students Allowed</mat-label>
-        <input type="number" formControlName="maxStudentsAllowed" matInput>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Max Students Allowed</mat-label>
+    <input formControlName="maxStudentsAllowed" matInput type="number">
+  </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Year of study</mat-label>
-        <input type="number" formControlName="yearOfStudy" matInput>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Year of study</mat-label>
+    <input formControlName="yearOfStudy" matInput type="number">
+  </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Select</mat-label>
-        <mat-select formControlName="dayOfWeek">
-            <mat-option value="monday">Monday</mat-option>
-            <mat-option value="tuesday">Tuesday</mat-option>
-            <mat-option value="wednesday">Wednesday</mat-option>
-            <mat-option value="thursday">Thrusday</mat-option>
-            <mat-option value="friday">Friday</mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select</mat-label>
+    <mat-select formControlName="dayOfWeek">
+      <mat-option value="monday">Monday</mat-option>
+      <mat-option value="tuesday">Tuesday</mat-option>
+      <mat-option value="wednesday">Wednesday</mat-option>
+      <mat-option value="thursday">Thrusday</mat-option>
+      <mat-option value="friday">Friday</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Start Hour</mat-label>
-        <input type="number" formControlName="startHour" matInput>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Start Hour</mat-label>
+    <input formControlName="startHour" matInput type="number">
+  </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>End Hour</mat-label>
-        <input type="number" formControlName="endHour" matInput>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>End Hour</mat-label>
+    <input formControlName="endHour" matInput type="number">
+  </mat-form-field>
 
-    <button type="button" routerLink="/admin/courses" mat-button class="custom-button">Cancel</button>
-    <button type="submit" mat-flat-button>Create</button>
+  <button class="custom-button" mat-button routerLink="/admin/courses" type="button">Cancel</button>
+  <button mat-flat-button type="submit">Create</button>
 </form>

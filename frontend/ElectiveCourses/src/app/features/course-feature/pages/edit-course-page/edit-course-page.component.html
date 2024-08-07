@@ -1,19 +1,18 @@
-
 <div class="text-2xl text-center mt-5 mb-5">EditCourse</div>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="form">
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input type="text" formControlName="name" matInput>
+    <input formControlName="name" matInput type="text">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Max Students Allowed</mat-label>
-    <input type="number" formControlName="maxStudentsAllowed" matInput>
+    <input formControlName="maxStudentsAllowed" matInput type="number">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Year of study</mat-label>
-    <input type="number" formControlName="yearOfStudy" matInput>
+    <input formControlName="yearOfStudy" matInput type="number">
   </mat-form-field>
 
   <mat-form-field>
@@ -29,14 +28,14 @@
 
   <mat-form-field>
     <mat-label>Start Hour</mat-label>
-    <input type="number" formControlName="startHour" matInput>
+    <input formControlName="startHour" matInput type="number">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>End Hour</mat-label>
-    <input type="number" formControlName="endHour" matInput>
+    <input formControlName="endHour" matInput type="number">
   </mat-form-field>
 
-  <button type="button" routerLink="/admin/courses" mat-button>Cancel</button>
-  <button type="submit" mat-flat-button>Edit</button>
+  <button mat-button routerLink="/admin/courses" type="button">Cancel</button>
+  <button mat-flat-button type="submit">Edit</button>
 </form>

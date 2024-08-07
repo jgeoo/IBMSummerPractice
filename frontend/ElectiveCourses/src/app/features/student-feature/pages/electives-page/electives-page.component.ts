@@ -3,10 +3,14 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
   MatHeaderRow,
   MatHeaderRowDef,
-  MatRow, MatRowDef, MatTable, MatTableDataSource
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource
 } from "@angular/material/table";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
@@ -62,25 +66,24 @@ export interface DialogData {
   templateUrl: './electives-page.component.html',
   styleUrl: './electives-page.component.css'
 })
-export class ElectivesPageComponent implements OnInit, AfterViewInit{
+export class ElectivesPageComponent implements OnInit, AfterViewInit {
+  readonly dialog = inject(MatDialog);
+  student$ = inject(StudentStateService).getAsObservable();
+  courses: CourseDto[] = []
+  dataSource = new MatTableDataSource<TableData>();
+  displayedColumns: string[] = ['name', 'dayOfWeek', 'yearOfStudy', 'maxStudents', 'hours', 'actions'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   private readonly courseService = inject(CourseService);
   private readonly enrollmentService = inject(EnrollmentService);
-  private readonly destroyRef  = inject(DestroyRef)
-  readonly dialog = inject(MatDialog);
-
-  student$ = inject(StudentStateService).getAsObservable();
-  courses : CourseDto[] = []
-  dataSource = new MatTableDataSource<TableData>();
-  displayedColumns: string[] = ['name', 'dayOfWeek', 'yearOfStudy', 'maxStudents', 'hours', 'actions'] ;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  private readonly destroyRef = inject(DestroyRef)
 
   ngOnInit() {
     this.courseService.getAllCourses().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: value => {
         this.courses = value
         this.dataSource.data = this.courses.map(c => ({
-        dto: c,
-        enrolled: false,
+          dto: c,
+          enrolled: false,
           enrollmentId: 0
         }));
       }
@@ -105,7 +108,7 @@ export class ElectivesPageComponent implements OnInit, AfterViewInit{
       console.log('The dialog was closed');
       if (result !== undefined) {
         this.dataSource.data.forEach(c => {
-          if(c.dto.id == element.id) {
+          if (c.dto.id == element.id) {
             c.enrolled = true;
             c.enrollmentId = result.id;
           }
@@ -119,7 +122,7 @@ export class ElectivesPageComponent implements OnInit, AfterViewInit{
     this.enrollmentService.deleteEnrollment(enrollmentId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: val => {
         this.dataSource.data.forEach(c => {
-          if(c.dto.id == element.id) {
+          if (c.dto.id == element.id) {
             c.enrolled = false;
           }
         })
