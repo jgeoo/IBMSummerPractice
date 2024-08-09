@@ -21,10 +21,10 @@
         <td *matCellDef="let teacher" mat-cell> {{ teacher.name }}</td>
       </ng-container>
 
-      <!-- Course ID Column -->
-      <ng-container matColumnDef="courseId">
-        <th *matHeaderCellDef mat-header-cell> Course ID</th>
-        <td *matCellDef="let teacher" mat-cell> {{ teacher.courseId }}</td>
+      <!-- Course Name Column -->
+      <ng-container matColumnDef="courseName">
+        <th mat-header-cell *matHeaderCellDef> Course </th>
+        <td mat-cell *matCellDef="let teacher"> {{ getCourseName(teacher.courseId) }} </td>
       </ng-container>
 
       <!-- Header and Rows -->
