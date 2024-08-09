@@ -35,10 +35,6 @@ export class AddTeacherPageComponent {
 
   courses: CourseDto[] = [];
   form = new FormGroup({
-    id: new FormControl(0, {
-      validators: [Validators.required],
-      nonNullable: true
-    }),
     name: new FormControl("", {
       validators: [Validators.required],
       nonNullable: true
